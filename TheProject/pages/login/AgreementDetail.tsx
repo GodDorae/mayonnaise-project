@@ -2,10 +2,19 @@ import React from 'react';
 import {View, Text, StyleSheet, Pressable, ScrollView} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
-import {AgreementDetailProps} from '../../types/screenPropsType';
 import selectedAgreements from '../../logics/login/agreementSelectLogic';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
 
-const AgreementDetail = ({navigation, route}: AgreementDetailProps) => {
+interface Props {
+  navigation: IntroStackNavigationProps<'AgreementDetail'>;
+  route: RouteProp<IntroStackParamList, 'AgreementDetail'>;
+}
+
+const AgreementDetail = ({navigation, route}: Props) => {
   const {property, number} = route.params;
   const agreements: string[] | undefined = selectedAgreements(property, number);
 

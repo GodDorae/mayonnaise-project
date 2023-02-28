@@ -1,72 +1,51 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import OnBoarding from './pages/login/OnBoarding';
-import CheckboxForAgreement from './pages/login/CheckboxForAgreement';
-import {RootStackParamList} from './types/screenPropsType';
-import {Screens} from './types/screenPropsType';
-import AgreementDetail from './pages/login/AgreementDetail';
-import Nickname from './pages/login/Nickname';
-import RegionPreference from './pages/login/RegionPreference';
-import ObjPreference from './pages/login/ObjPreference';
-import WorkspacePreference from './pages/login/WorkspacePreference';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
+import BottomTabNavigator from './pages/BottomTabNavigator';
+import IntroNavigator from './pages/IntroNavigator';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
-const RootStack = createNativeStackNavigator<RootStackParamList>();
+export type RootStackParamList = {
+  default: undefined;
+  IntroNavigator: undefined;
+  BottomTabNavigator: undefined;
+};
+
+export type RootStackNavigationProps<
+  T extends keyof RootStackParamList = 'default',
+> = NativeStackNavigationProp<RootStackParamList, T>;
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App: React.FunctionComponent = () => {
+  const googleSigninConfigure = () => {
+    GoogleSignin.configure({
+      webClientId:
+        '1092441383416-h5kff2dbcm3hc0qvheaqe9uja2j26cu0.apps.googleusercontent.com',
+    });
+  };
+
+  useEffect(() => {
+    googleSigninConfigure();
+  }, []);
+
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="OnBoarding">
-        <RootStack.Screen
-          name={Screens.OnBoarding}
-          component={OnBoarding}
-          options={{
-            headerShown: false,
-          }}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="IntroNavigator"
+          component={IntroNavigator}
+          options={{headerShown: false}}
         />
-        <RootStack.Screen
-          name={Screens.CheckboxForAgreement}
-          component={CheckboxForAgreement}
-          options={{
-            headerShown: false,
-          }}
+        <Stack.Screen
+          name="BottomTabNavigator"
+          component={BottomTabNavigator}
+          options={{headerShown: false}}
         />
-        <RootStack.Screen
-          name={Screens.AgreementDetail}
-          component={AgreementDetail}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <RootStack.Screen
-          name={Screens.Nickname}
-          component={Nickname}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <RootStack.Screen
-          name={Screens.RegionPreference}
-          component={RegionPreference}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <RootStack.Screen
-          name={Screens.ObjPreference}
-          component={ObjPreference}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <RootStack.Screen
-          name={Screens.WorkspacePreference}
-          component={WorkspacePreference}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </RootStack.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

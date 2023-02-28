@@ -2,9 +2,18 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import commonButton from '../../components/commonButton';
 import {IRegionPreference} from '../../types/preferenceType';
-import {RegionPreferenceProps} from '../../types/screenPropsType';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
 
-const RegionPreference = ({navigation}: RegionPreferenceProps) => {
+interface Props {
+  navigation: IntroStackNavigationProps<'RegionPreference'>;
+  route: RouteProp<IntroStackParamList, 'RegionPreference'>;
+}
+
+const RegionPreference = ({navigation}: Props) => {
   const [region, setRegion] = useState<IRegionPreference>({
     Gangnam: false,
     Seolleung: false,

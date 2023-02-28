@@ -3,8 +3,18 @@ import {View, Text, StyleSheet} from 'react-native';
 import commonButton from '../../components/commonButton';
 import buttonWithLogic from '../../components/commonButtonForMax3';
 import {IWorkspacePreference} from '../../types/preferenceType';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
 
-const WorkspacePreference = () => {
+interface Props {
+  navigation: IntroStackNavigationProps<'WorkspacePreference'>;
+  route: RouteProp<IntroStackParamList, 'WorkspacePreference'>;
+}
+
+const WorkspacePreference = ({navigation}: Props) => {
   const [workspace, setWorkspace] = useState<IWorkspacePreference>({
     Cafe: false,
     Studyroom: false,
@@ -110,7 +120,14 @@ const WorkspacePreference = () => {
         setTotalChecked,
         setWorkspace,
       )}
-      {commonButton(isSelected, '다음', () => {}, false)}
+      {commonButton(
+        isSelected,
+        '다음',
+        () => {
+          navigation.navigate('BottomTabNavigator');
+        },
+        false,
+      )}
     </View>
   );
 };

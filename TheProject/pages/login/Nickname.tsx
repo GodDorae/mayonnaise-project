@@ -1,9 +1,18 @@
 import React, {useState} from 'react';
 import {View, Text, Pressable, TextInput, StyleSheet} from 'react-native';
 import commonButton from '../../components/commonButton';
-import {NicknameProps} from '../../types/screenPropsType';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
 
-const Nickname = ({navigation}: NicknameProps) => {
+interface Props {
+  navigation: IntroStackNavigationProps<'Nickname'>;
+  route: RouteProp<IntroStackParamList, 'Nickname'>;
+}
+
+const Nickname = ({navigation}: Props) => {
   const [nickname, setNickname] = useState('');
 
   return (

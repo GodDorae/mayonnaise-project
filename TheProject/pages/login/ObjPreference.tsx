@@ -2,9 +2,18 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 import commonButton from '../../components/commonButton';
 import {IObjPreference} from '../../types/preferenceType';
-import {ObjPreferenceProps} from '../../types/screenPropsType';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
 
-const ObjPreference = ({navigation}: ObjPreferenceProps) => {
+interface Props {
+  navigation: IntroStackNavigationProps<'ObjPreference'>;
+  route: RouteProp<IntroStackParamList, 'ObjPreference'>;
+}
+
+const ObjPreference = ({navigation}: Props) => {
   const [obj, setObj] = useState<IObjPreference>({
     PersonalStudy: false,
     Laptop: false,

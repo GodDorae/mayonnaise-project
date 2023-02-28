@@ -15,10 +15,19 @@ import {
   onOption1Press,
   onOption2Press,
 } from '../../logics/login/onPressLogic';
-import {CheckboxAgreementProps} from '../../types/screenPropsType';
 import commonButton from '../../components/commonButton';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
 
-const CheckboxForAgreement = ({navigation}: CheckboxAgreementProps) => {
+interface Props {
+  navigation: IntroStackNavigationProps<'CheckboxForAgreement'>;
+  route: RouteProp<IntroStackParamList, 'CheckboxForAgreement'>;
+}
+
+const CheckboxForAgreement = ({navigation}: Props) => {
   const [obligationChecklist, setObligationChecklist] =
     useState<IObligationChecklist>({
       obligation1: false,

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1092441383416",
+    "project_id": "mayonnaise-b3a47",
+    "storage_bucket": "mayonnaise-b3a47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092441383416:android:2d1e8331ce7cc6ca99360d",
+        "android_client_info": {
+          "package_name": "com.theproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092441383416-pi0n2goevvk4r1ndnkl378eu9f7evr5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theproject",
+            "certificate_hash": "ae3dc42c5259d4f2629eed9ab1c761ad7aa53d83"
+          }
+        },
+        {
+          "client_id": "1092441383416-h5kff2dbcm3hc0qvheaqe9uja2j26cu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXBnMpzd31lwPQwvnZfaaNBWaTsVI7oM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092441383416-h5kff2dbcm3hc0qvheaqe9uja2j26cu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

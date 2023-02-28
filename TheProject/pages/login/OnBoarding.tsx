@@ -1,12 +1,34 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {login} from '@react-native-seoul/kakao-login';
-import {OnBoardingProps} from '../../types/screenPropsType';
+import {
+  IntroStackNavigationProps,
+  IntroStackParamList,
+} from '../../types/introScreenPropsType';
+import {RouteProp} from '@react-navigation/native';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
 
-const OnBoarding = ({navigation}: OnBoardingProps) => {
+interface Props {
+  navigation: IntroStackNavigationProps<'OnBoarding'>;
+  route: RouteProp<IntroStackParamList, 'OnBoarding'>;
+}
+
+const OnBoarding = ({navigation}: Props) => {
   const signInWithKakao = async (): Promise<void> => {
     try {
       await login();
+      navigation.navigate('CheckboxForAgreement');
+    } catch (err) {
+      console.error('login err', err);
+    }
+  };
+
+  const siginInWithGoogle = async () => {
+    try {
+      const {idToken} = await GoogleSignin.signIn();
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      await auth().signInWithCredential(googleCredential);
       navigation.navigate('CheckboxForAgreement');
     } catch (err) {
       console.error('login err', err);
@@ -30,6 +52,13 @@ const OnBoarding = ({navigation}: OnBoardingProps) => {
             signInWithKakao();
           }}>
           <Text style={styles.text}>카카오 로그인</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            siginInWithGoogle();
+          }}>
+          <Text style={styles.text}>구글 로그인</Text>
         </Pressable>
       </View>
     </View>
